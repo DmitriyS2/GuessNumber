@@ -11,8 +11,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import ru.netology.guessnumber.databinding.ActivityMainBinding
 
-var name = ""
-
+var name:String? = ""
+var minimNumber = 0
+var maximNumber = 100
 
 class MainActivity : AppCompatActivity() {
     private var launcher:ActivityResultLauncher<Intent>? = null
@@ -51,7 +52,8 @@ class MainActivity : AppCompatActivity() {
             i.putExtra("name", name)
             i.putExtra("count", 0)
             i.putExtra("answer", false)
-            i.putExtra("number", (0..100).random())
+            i.putExtra("number", (minimNumber..maximNumber).random())
+
 
             launcher?.launch(i)
         }

@@ -12,26 +12,39 @@ class PlayActivity : AppCompatActivity() {
     var count by Delegates.notNull<Int>()
     var number by Delegates.notNull<Int>()
     var answer: Boolean = false
+    var min = minimNumber
+    var max = maximNumber
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlayBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val name = intent.getStringExtra("name")
-        count = intent.getIntExtra("count", 0)
-        answer = intent.getBooleanExtra("answer", false)
-        number = intent.getIntExtra("number", 0)
+        intent?.let {
+            count = intent.getIntExtra("count", 0)
+            answer = intent.getBooleanExtra("answer", false)
+            number = intent.getIntExtra("number", 0)
+            name = intent.getStringExtra("name")
 
-        binding.textCount.text = "Попытка№ $count"
-        binding.textAnswer.text = "$name, я загадал число от 0 до 100"
+        }
+
+
+        binding.apply {
+            textCount.text = "Попытка №$count"
+            textAnswer.text = "$name, я загадал число от 0 до 100"
+            interval.text = "$min  <  X  <  $max"
+        }
 
         binding.buttonForNumber.setOnClickListener {
-            if (!binding.editNumber.text.isNullOrEmpty()) {
-                binding.textAnswer.text = "Нажал"
+            val text = binding.editNumber.text.toString()
+            val lengthMax = maximNumber.toString().length+1
+            if (!binding.editNumber.text.isNullOrEmpty() && text.length<=lengthMax) {
                 var numberInput = binding.editNumber.text.toString().toInt()
                 binding.editNumber.setText("")
                 guessNumber(numberInput)
+            } else {
+                binding.editNumber.setText("")
+                binding.textAnswer.text = "Неправильно набрано число!\nПопробуй заново"
             }
         }
     }
@@ -45,10 +58,25 @@ class PlayActivity : AppCompatActivity() {
                 answer = true
                 isExit()
             }
-            in 0 until number -> textAnswer = "Загаданное число больше $numberInput"
-            in number + 1..100 -> textAnswer = "Загаданное число меньше $numberInput"
+
+            in min+1 until number -> {
+                textAnswer = "Загаданное число больше $numberInput"
+                min = numberInput
+            }
+
+            in minimNumber..min -> textAnswer = "Эмм...Ну я как бы уже сказал, что мое число больше $min"
+
+            in number + 1 until max -> {
+                textAnswer = "Загаданное число меньше $numberInput"
+                max = numberInput
+            }
+
+            in max..maximNumber -> textAnswer = "Я уже вроде говорил, что мое число меньше $max"
+
+            in maximNumber+1..maximNumber*100 -> textAnswer = "Это слишком много и уж точно мое число меньше $numberInput"
         }
         binding.textAnswer.text = textAnswer
+        binding.interval.text = "$min  <  X  <  $max"
     }
 
     private fun isExit() {

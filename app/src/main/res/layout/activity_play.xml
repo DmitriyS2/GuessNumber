@@ -29,13 +29,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/textAnswer"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/interval"
+        app:layout_constraintTop_toBottomOf="@id/textAnswer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        tools:text = "0  X  100"
+        android:layout_marginTop="16dp"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textCount"
         app:layout_constraintTop_toTopOf="@id/avatar"
         app:layout_constraintStart_toEndOf="@id/avatar"
-        tools:text="Попытка№ "
+        tools:text="Попытка №"
         android:textSize="18sp"
         android:layout_marginStart="16dp"
         />
@@ -57,11 +70,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonForNumber"
-        app:layout_constraintStart_toEndOf="@id/editNumber"
-        app:layout_constraintTop_toTopOf="@id/editNumber"
+        app:layout_constraintStart_toStartOf="@id/editNumber"
+        app:layout_constraintTop_toBottomOf="@id/editNumber"
         android:src="@drawable/baseline_check_24"
         tools:src = "@drawable/baseline_check_24"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Ввод"
         />
 
