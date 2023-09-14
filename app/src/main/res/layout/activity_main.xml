@@ -102,12 +102,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonStart"
+        android:id="@+id/buttonStartGuessNumber"
         app:layout_constraintTop_toBottomOf="@id/textComp"
         android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="START"
+        android:text="START GuessNumber"
         android:visibility="gone"
         />
 

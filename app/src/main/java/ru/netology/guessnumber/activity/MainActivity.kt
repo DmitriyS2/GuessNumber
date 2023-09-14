@@ -12,8 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import ru.netology.guessnumber.databinding.ActivityMainBinding
 
 var name:String? = ""
-var minimNumber = 0
-var maximNumber = 100
+
 
 class MainActivity : AppCompatActivity() {
     private var launcher:ActivityResultLauncher<Intent>? = null
@@ -28,31 +27,33 @@ class MainActivity : AppCompatActivity() {
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 result: ActivityResult ->
             if(result.resultCode == RESULT_OK) {
-                val text = result.data?.getIntExtra("result", 0)
-                binding.textComp.text = "Поздравляю! Ты угадал мое число за $text раз"
+                val text = result.data?.getStringExtra("result")
+                binding.textComp.text = text
             }
         }
 
-        binding.textComp.text = "Привет! Меня зовут Макс. А тебя?"
+        if(name=="") {
+            binding.textComp.text = "Привет! Меня зовут Макс. А тебя?"
 
-        binding.buttonOk.setOnClickListener {
-            if(!binding.textInput.text.isNullOrEmpty()) {
-                name = binding.textInput.text.toString()
-                binding.textComp.text = "$name, начинаем игру!"
-                binding.textInput.setText("")
-                binding.groupEditTextOk.visibility = View.GONE
-                binding.buttonStart.visibility = View.VISIBLE
+            binding.buttonOk.setOnClickListener {
+                if (!binding.textInput.text.isNullOrEmpty()) {
+                    name = binding.textInput.text.toString()
+                    binding.textComp.text = "$name, начинаем игру!"
+                    binding.textInput.setText("")
+                    binding.groupEditTextOk.visibility = View.GONE
+                    binding.buttonStartGuessNumber.visibility = View.VISIBLE
+                }
             }
         }
 
-        binding.buttonStart.setOnClickListener{
+        binding.buttonStartGuessNumber.setOnClickListener{
             //binding.buttonStart.visibility = View.GONE
             Log.d("MyLog", "button START")
             val i = Intent(this, PlayActivity::class.java)
             i.putExtra("name", name)
-            i.putExtra("count", 0)
-            i.putExtra("answer", false)
-            i.putExtra("number", (minimNumber..maximNumber).random())
+            //i.putExtra("count", 0)
+            //i.putExtra("answer", false)
+            //i.putExtra("number", (minimNumber..maximNumber).random())
 
 
             launcher?.launch(i)
