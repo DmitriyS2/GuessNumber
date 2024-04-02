@@ -4,9 +4,11 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
+import ru.netology.guessnumber.R
 import ru.netology.guessnumber.databinding.FragmentMenuBinding
 
-class MenuFragment : DialogFragment() {
+class MenuFragment(val title:String, val rules:String) : DialogFragment() {
+
     var _binding:FragmentMenuBinding? = null
     val binding:FragmentMenuBinding get() = _binding!!
 
@@ -19,11 +21,12 @@ class MenuFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         _binding = FragmentMenuBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(requireContext())
-        //super.onCreate(savedInstanceState)
-        binding.fragmentRules.text = "\n    Компьютер загадывает число в рамках указанного интервала.\n\nВ меню можно изменять границы интервала.\n\n"
+
+        binding.fragmentRules.text = rules
         builder.setView(binding.root)
         return builder
-            .setTitle("Правила игры GuessNumber")
+            .setIcon(R.drawable.info_24)
+            .setTitle("Правила игры \n$title")
             .create()
         }
     }

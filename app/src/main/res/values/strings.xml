@@ -1,5 +1,28 @@
 <resources>
     <string name="app_name">GuessNumber</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="message_victory">"Можешь меня поздравить! Число, загаданное компьютером в игре GuessNumber, отгадано мной c %1$d раза!"</string>
+    <string name="number_guess_x_times">"Число угадано с %1$d раза!"</string>
+    <string name="Congrat">Поздравляю!!!</string>
+    <string name="new_game">Новая игра</string>
+    <string name="guess_number">Guess Number</string>
+    <string name="start">START</string>
+    <string name="enter_number">Введите число</string>
+    <string name="enter">Ввод</string>
+    <string name="minimum">Минимум</string>
+    <string name="maximum">Максимум</string>
+    <string name="ok">OK</string>
+    <string name="rules_guess">"    Компьютер загадывает число в рамках указанного интервала.\n\n    В меню можно поменять границы интервала."</string>
+    <string name="wrong_number">Неправильно набрано число!\nПопробуй заново</string>
+    <string name="attempt_x">"Попытка %1$d"</string>
+    <string name="number_of_comp_more"> "Загаданное число больше %1$d"</string>
+    <string name="number_of_comp_bigger_min">"Эмм…Ну я как бы уже сказал, что мое число больше %1$d"</string>
+    <string name="number_of_comp_smaller">"Загаданное число меньше %1$d"</string>
+    <string name="number_of_comp_smaller_max">"Я уже вроде говорил, что мое число меньше %1$d"</string>
+    <string name="its_too_much">"Это слишком много и уж точно мое число меньше %1$d"</string>
+    <string name="its_too_few"> "Слишком мало и уж точно мое число больше %1$d"</string>
+    <string name="i_guess_number">"Я загадал число от %1$d до %2$d"</string>
+    <string name="minmum_maximum">Минимум - это минимальное число\nМаксимум - это максимальное число</string>
+    <string name="field_isnt_empty">Поле должно быть заполнено</string>
+    <string name="value_0_10000">Значения от 0 до 10000</string>
 </resources>

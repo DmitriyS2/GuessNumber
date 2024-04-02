@@ -4,112 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".activity.MainActivity">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/face"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:src="@drawable/face"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:id="@+id/avatar"
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_host_fragment"
+        app:navGraph="@navigation/nav_main"
+        app:defaultNavHost="true"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        tools:text="Hello World!"
-        android:textSize="20sp"
-        android:layout_marginTop="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/textComp"
-        />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textInput"
-        android:hint="Введите имя"
-        android:textSize="18sp"
-        android:inputType="textCapWords"
-        app:layout_constraintTop_toBottomOf="@id/textComp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonOk"
-        app:layout_constraintStart_toStartOf="@id/textInput"
-        app:layout_constraintTop_toBottomOf="@id/textInput"
-        android:src="@drawable/baseline_check_24"
-        android:layout_marginTop="24dp"
-        android:background="@android:color/transparent"
-        tools:src = "@drawable/baseline_check_24"
-        android:layout_marginStart="16dp"
-        />
-
-    <androidx.constraintlayout.widget.Group
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="buttonOk, textInput"
-        android:id="@+id/groupEditTextOk"
-        />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editNumber"
-        android:inputType="number"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Введите число"
-        />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonForNumber"
-        app:layout_constraintStart_toEndOf="@id/editNumber"
-        app:layout_constraintTop_toTopOf="@id/editNumber"
-        android:src="@drawable/baseline_check_24"
-        android:background="@android:color/transparent"
-        tools:src = "@drawable/baseline_check_24"
-        android:layout_marginStart="16dp"
-        />
-
-    <androidx.constraintlayout.widget.Group
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="buttonForNumber, editNumber"
-        android:id="@+id/groupForNumber"
-        android:visibility="gone"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonStartGuessNumber"
-        app:layout_constraintTop_toBottomOf="@id/textComp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="START GuessNumber"
-        android:visibility="gone"
-        />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
