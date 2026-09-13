@@ -1,23 +1,32 @@
-package ru.netology.guessnumber.activity
+package ru.netology.guessnumber.fragments.startScreen
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.netology.guessnumber.R
 import ru.netology.guessnumber.databinding.FragmentStartBinding
 
 class StartFragment : Fragment() {
 
+    private var _binding: FragmentStartBinding? = null
+    private val binding
+        get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentStartBinding.inflate(inflater, container, false)
+        _binding = FragmentStartBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
             ObjectAnimator.ofPropertyValuesHolder(
@@ -42,7 +51,10 @@ class StartFragment : Fragment() {
                 findNavController().navigate(R.id.action_startFragment_to_playFragment)
             }
         }
-        return binding.root
     }
 
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 }

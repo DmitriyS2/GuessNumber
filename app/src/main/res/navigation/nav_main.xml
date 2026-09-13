@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/playFragment"
-        android:name="ru.netology.guessnumber.activity.PlayFragment"
+        android:name="ru.netology.guessnumber.fragments.playScreen.PlayFragment"
         android:label="fragment_play"
         tools:layout="@layout/fragment_play" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/startFragment"
-        android:name="ru.netology.guessnumber.activity.StartFragment"
+        android:name="ru.netology.guessnumber.fragments.startScreen.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/endFragment"
-        android:name="ru.netology.guessnumber.activity.EndFragment"
+        android:name="ru.netology.guessnumber.fragments.endScreen.EndFragment"
         android:label="fragment_end"
         tools:layout="@layout/fragment_end" >
         <action

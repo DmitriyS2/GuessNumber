@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.PlayFragment">
+    tools:context=".fragments.playScreen.PlayFragment">
 
     <ImageView
         android:id="@+id/menu"
@@ -23,7 +23,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/face"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,32 +32,44 @@
         android:id="@+id/textAnswer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bubble_text"
+        android:padding="4dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/avatar"
-        app:layout_constraintTop_toBottomOf="@id/avatar"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
         tools:text="Hello World!" />
+
+    <View
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bubble_tail_left"
+        app:layout_constraintStart_toStartOf="@id/textAnswer"
+        app:layout_constraintTop_toBottomOf="@id/textAnswer" />
 
     <TextView
         android:id="@+id/interval"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textAnswer"
+        app:layout_constraintTop_toBottomOf="@id/avatar"
         tools:text="0  ?  100" />
 
     <TextView
         android:id="@+id/textCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintTop_toTopOf="@id/avatar"
+        android:layout_marginTop="16dp"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/interval"
         tools:text="Попытка №" />
 
     <EditText
@@ -76,30 +88,46 @@
         android:id="@+id/buttonForNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/enter"
-        app:layout_constraintStart_toStartOf="@id/editNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editNumber" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edMin"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
         android:layout_marginBottom="250dp"
         android:hint="@string/minimum"
-        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edMax"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edMin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMax"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
         android:layout_marginTop="16dp"
         android:hint="@string/maximum"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/edMin" />
+        app:layout_constraintTop_toBottomOf="@id/tilMin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edMax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/buttonInterval"
@@ -110,14 +138,14 @@
         android:text="@string/ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edMax" />
+        app:layout_constraintTop_toBottomOf="@id/tilMax" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupInterval"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="edMax, edMin, buttonInterval" />
+        app:constraint_referenced_ids="tilMax, tilMin, buttonInterval" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupPlay"
