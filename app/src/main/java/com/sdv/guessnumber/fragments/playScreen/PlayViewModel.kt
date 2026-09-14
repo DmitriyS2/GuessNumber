@@ -51,7 +51,7 @@ class PlayViewModel : ViewModel() {
                 maximNumber = maxInt,
                 min = minInt,
                 max = maxInt,
-                number = (minInt..maxInt).random(),
+                number = ((minInt + 1) until maxInt).random(),
                 textAnswer = UiText.Res(R.string.i_guess_number, listOf(minInt, maxInt)),
                 interval = "$minInt  <  ?  <  $maxInt"
             )
@@ -129,6 +129,10 @@ class PlayViewModel : ViewModel() {
                 viewModelScope.launch {
                     _effect.emit(PlayEffect.ShowToast(UiText.Res(R.string.minmum_maximum)))
                 }
+            } else if ((maxValueInt - minValueInt) < 2) {
+                viewModelScope.launch {
+                    _effect.emit(PlayEffect.ShowToast(UiText.Res(R.string.diff_less_2)))
+                }
             } else {
                 _state.update { it.copy(minimNumber = minValueInt, maximNumber = maxValueInt) }
                 startGame(minValueInt, maxValueInt)
@@ -140,17 +144,27 @@ class PlayViewModel : ViewModel() {
         var flag = true
         var textErrorMin: UiText? = null
         var textErrorMax: UiText? = null
-        if (valueMin.isEmpty()) {
-            textErrorMin = UiText.Res(R.string.field_isnt_empty)
-            flag = false
-        } else if (valueMin.toInt() !in 0..10000) {
+        try {
+            if (valueMin.isEmpty()) {
+                textErrorMin = UiText.Res(R.string.field_isnt_empty)
+                flag = false
+            } else if (valueMin.toInt() !in 0..10000) {
+                textErrorMin = UiText.Res(R.string.value_0_10000)
+                flag = false
+            }
+        } catch (e: Exception) {
             textErrorMin = UiText.Res(R.string.value_0_10000)
             flag = false
         }
-        if (valueMax.isEmpty()) {
-            textErrorMax = UiText.Res(R.string.field_isnt_empty)
-            flag = false
-        } else if (valueMax.toInt() !in 0..10000) {
+        try {
+            if (valueMax.isEmpty()) {
+                textErrorMax = UiText.Res(R.string.field_isnt_empty)
+                flag = false
+            } else if (valueMax.toInt() !in 0..10000) {
+                textErrorMax = UiText.Res(R.string.value_0_10000)
+                flag = false
+            }
+        } catch (e: Exception) {
             textErrorMax = UiText.Res(R.string.value_0_10000)
             flag = false
         }

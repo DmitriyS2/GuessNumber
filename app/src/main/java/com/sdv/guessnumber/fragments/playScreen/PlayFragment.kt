@@ -2,7 +2,6 @@ package com.sdv.guessnumber.fragments.playScreen
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -112,7 +111,6 @@ class PlayFragment : Fragment() {
                 viewModel.effect.collect { effect ->
                     when (effect) {
                         is PlayEffect.NavigateToEnd -> {
-                            Log.d("MyLog", "current = ${findNavController().currentDestination?.id}")
                             findNavController()
                                 .navigate(
                                     R.id.action_playFragment_to_endFragment,
