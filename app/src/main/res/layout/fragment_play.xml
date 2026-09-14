@@ -35,7 +35,8 @@
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/bubble_text"
-        android:padding="4dp"
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="8dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/avatar"
@@ -43,6 +44,7 @@
         tools:text="Hello World!" />
 
     <View
+        android:id="@+id/tail"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginStart="12dp"
@@ -151,6 +153,6 @@
         android:id="@+id/groupPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="textAnswer, textCount, interval,editNumber, buttonForNumber" />
+        app:constraint_referenced_ids="textAnswer, textCount, interval,editNumber, buttonForNumber, tail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

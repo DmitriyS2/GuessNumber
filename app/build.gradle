@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.netology.guessnumber'
+    namespace 'com.sdv.guessnumber'
     compileSdk 34
 
     defaultConfig {
-        applicationId "ru.netology.guessnumber"
+        applicationId "com.sdv.guessnumber"
         minSdk 24
         targetSdk 34
         versionCode 1
