@@ -1,12 +1,15 @@
 package com.sdv.guessnumber.fragments.playScreen
 
+import android.R.id.title
 import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -21,6 +24,7 @@ import com.sdv.guessnumber.fragments.menu.MenuFragment
 import com.sdv.guessnumber.fragments.playScreen.contract.PlayEffect
 import com.sdv.guessnumber.fragments.playScreen.contract.PlayEvent
 import com.sdv.guessnumber.util.resolve
+import com.sdv.guessnumber.util.scale
 
 class PlayFragment : Fragment() {
 
@@ -48,6 +52,11 @@ class PlayFragment : Fragment() {
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.menu_guess_options)
+                    val isTimerVisible = viewModel.state.value.isTimerVisible
+                    menu.findItem(R.id.timerToggleGuess).apply {
+                        title = if (isTimerVisible) "Выкл таймер"
+                        else "Вкл таймер"
+                    }
                     setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.newGameGuess -> {
@@ -67,6 +76,11 @@ class PlayFragment : Fragment() {
                                 )
                                 val manager = childFragmentManager
                                 menuDialog.show(manager, "MENU_GUESS")
+                                true
+                            }
+
+                            R.id.timerToggleGuess -> {
+                                viewModel.onEvent(PlayEvent.OnClickTimerEnabled)
                                 true
                             }
 
@@ -96,7 +110,15 @@ class PlayFragment : Fragment() {
                     state.textAnswer?.let { binding.textAnswer.text = resolve(it) }
                     binding.apply {
                         textCount.text = getString(R.string.attempt_x, state.count)
-                        interval.text = state.interval
+                        timer.isVisible = state.isTimerVisible
+                        if (minValue.text != state.min.toString()) {
+                            minValue.text = state.min.toString()
+                            minValue.scale()
+                        }
+                        if (maxValue.text != state.max.toString()) {
+                            maxValue.text = state.max.toString()
+                            maxValue.scale()
+                        }
                         tilMin.error = resolve(state.minimNumberError)
                         tilMax.error = resolve(state.maximNumberError)
                     }

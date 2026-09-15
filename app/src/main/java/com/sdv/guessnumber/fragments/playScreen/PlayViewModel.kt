@@ -34,7 +34,12 @@ class PlayViewModel : ViewModel() {
             is PlayEvent.CheckPointInterval -> newInterval(event.minValue, event.maxValue)
             PlayEvent.OnClickNewInterval -> showScreenNewInterval()
             PlayEvent.OnClickNewGame -> startGame()
+            PlayEvent.OnClickTimerEnabled -> changeTimerVisibility()
         }
+    }
+
+    private fun changeTimerVisibility() {
+        _state.update { it.copy(isTimerVisible = !it.isTimerVisible) }
     }
 
     private fun showScreenNewInterval() {
@@ -53,7 +58,6 @@ class PlayViewModel : ViewModel() {
                 max = maxInt,
                 number = ((minInt + 1) until maxInt).random(),
                 textAnswer = UiText.Res(R.string.i_guess_number, listOf(minInt, maxInt)),
-                interval = "$minInt  <  ?  <  $maxInt"
             )
         }
         viewModelScope.launch {
@@ -115,7 +119,6 @@ class PlayViewModel : ViewModel() {
                 textAnswer = textAnswer,
                 min = min,
                 max = max,
-                interval = "$min <  ?  < $max"
             )
         }
     }

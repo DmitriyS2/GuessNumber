@@ -12,5 +12,5 @@ data class PlayState(
     val min: Int = 0,
     val max: Int = maximNumber,
     val textAnswer: UiText? = null,
-    val interval: String = "",
+    val isTimerVisible: Boolean = false,
 )

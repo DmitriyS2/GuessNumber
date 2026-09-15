@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Новая игра" android:id="@+id/newGameGuess"/>
-    <item android:title="Интервал" android:id="@+id/newIntervalGuess"/>
-    <item android:title="Правила" android:id="@+id/rulesGuess"/>
+    <item
+        android:id="@+id/newGameGuess"
+        android:title="Новая игра" />
+    <item
+        android:id="@+id/newIntervalGuess"
+        android:title="Интервал" />
+    <item
+        android:id="@+id/rulesGuess"
+        android:title="Правила" />
+    <item
+        android:id="@+id/timerToggleGuess"
+        android:title="Включить таймер" />
 </menu>
