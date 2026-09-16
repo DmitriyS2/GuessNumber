@@ -32,12 +32,12 @@ jobs:
 
       - name: Decode keystore
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > app/key.jks
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > app/keyForApk.jks
 
       - name: Create keystore.properties
         run: |
           cat > keystore.properties <<EOF
-          storeFile=key.jks
+          storeFile=keyForApk.jks
           storePassword=${{ secrets.KEYSTORE_PASSWORD }}
           keyAlias=${{ secrets.KEY_ALIAS }}
           keyPassword=${{ secrets.KEY_PASSWORD }}
