@@ -23,5 +23,6 @@ keystore.properties
 *.ap_
 *.dm
 app/release/
+app/debug/
 app/build/
 build/

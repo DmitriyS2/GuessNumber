@@ -46,6 +46,15 @@ jobs:
       - name: Build release APK
         run: ./gradlew assembleRelease --stacktrace
 
+      - name: Debug - find APK
+        run: |
+          echo "=== Searching for .apk files ==="
+          find . -name "*.apk" -type f 2>/dev/null
+          echo "=== app/build/outputs ==="
+          ls -laR app/build/outputs 2>/dev/null || echo "no app/build/outputs"
+          echo "=== app/release ==="
+          ls -laR app/release 2>/dev/null || echo "no app/release"
+
       - name: Build release AAB
         run: ./gradlew bundleRelease --stacktrace
 
