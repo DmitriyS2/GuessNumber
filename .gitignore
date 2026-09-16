@@ -14,3 +14,14 @@
 .cxx
 local.properties
 .idea/
+keystore.properties
+*.jks
+*.keystore
+*.base64
+*.apk
+*.aab
+*.ap_
+*.dm
+app/release/
+app/build/
+build/

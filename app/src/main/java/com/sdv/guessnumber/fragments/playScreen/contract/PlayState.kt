@@ -1,5 +1,6 @@
 package com.sdv.guessnumber.fragments.playScreen.contract
 
+import com.sdv.guessnumber.util.EMPTY
 import com.sdv.guessnumber.util.UiText
 
 data class PlayState(
@@ -13,4 +14,5 @@ data class PlayState(
     val max: Int = maximNumber,
     val textAnswer: UiText? = null,
     val isTimerVisible: Boolean = false,
+    val timeText: String = EMPTY,
 )

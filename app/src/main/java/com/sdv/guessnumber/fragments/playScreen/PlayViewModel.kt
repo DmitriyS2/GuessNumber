@@ -14,7 +14,11 @@ import com.sdv.guessnumber.R
 import com.sdv.guessnumber.fragments.playScreen.contract.PlayEffect
 import com.sdv.guessnumber.fragments.playScreen.contract.PlayEvent
 import com.sdv.guessnumber.fragments.playScreen.contract.PlayState
+import com.sdv.guessnumber.util.EMPTY
 import com.sdv.guessnumber.util.UiText
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 
 class PlayViewModel : ViewModel() {
 
@@ -23,6 +27,8 @@ class PlayViewModel : ViewModel() {
 
     private val _effect = MutableSharedFlow<PlayEffect>()
     val effect: SharedFlow<PlayEffect> = _effect.asSharedFlow()
+
+    private var timerJob: Job? = null
 
     init {
         startGame()
@@ -39,7 +45,40 @@ class PlayViewModel : ViewModel() {
     }
 
     private fun changeTimerVisibility() {
-        _state.update { it.copy(isTimerVisible = !it.isTimerVisible) }
+        if (state.value.isTimerVisible) {
+            stopTimer()
+        } else {
+            startTimer()
+        }
+    }
+
+    private fun startTimer() {
+        _state.update { it.copy(isTimerVisible = true, timeText = formatTime(0L)) }
+        var elapsedMs = 0L
+        timerJob?.cancel()
+        timerJob = viewModelScope.launch {
+            while (isActive) {
+                delay(1000L)
+                elapsedMs += 1000L
+                val time = formatTime(elapsedMs)
+                _state.update { it.copy(timeText = time) }
+            }
+        }
+    }
+
+    private fun stopTimer() {
+        timerJob?.cancel()
+        timerJob = null
+
+        _state.update { it.copy(isTimerVisible = false, timeText = EMPTY) }
+    }
+
+    private fun formatTime(millis: Long): String {
+        val totalSeconds = millis / 1000
+        val hours = totalSeconds / 3600
+        val minutes = (totalSeconds % 3600) / 60
+        val seconds = totalSeconds % 60
+        return "%02d:%02d:%02d".format(hours, minutes, seconds)
     }
 
     private fun showScreenNewInterval() {
@@ -130,7 +169,7 @@ class PlayViewModel : ViewModel() {
 
             if (minValueInt >= maxValueInt) {
                 viewModelScope.launch {
-                    _effect.emit(PlayEffect.ShowToast(UiText.Res(R.string.minmum_maximum)))
+                    _effect.emit(PlayEffect.ShowToast(UiText.Res(R.string.minimum_maximum)))
                 }
             } else if ((maxValueInt - minValueInt) < 2) {
                 viewModelScope.launch {
@@ -149,7 +188,7 @@ class PlayViewModel : ViewModel() {
         var textErrorMax: UiText? = null
         try {
             if (valueMin.isEmpty()) {
-                textErrorMin = UiText.Res(R.string.field_isnt_empty)
+                textErrorMin = UiText.Res(R.string.field_is_empty)
                 flag = false
             } else if (valueMin.toInt() !in 0..10000) {
                 textErrorMin = UiText.Res(R.string.value_0_10000)
@@ -161,7 +200,7 @@ class PlayViewModel : ViewModel() {
         }
         try {
             if (valueMax.isEmpty()) {
-                textErrorMax = UiText.Res(R.string.field_isnt_empty)
+                textErrorMax = UiText.Res(R.string.field_is_empty)
                 flag = false
             } else if (valueMax.toInt() !in 0..10000) {
                 textErrorMax = UiText.Res(R.string.value_0_10000)

@@ -23,6 +23,7 @@ import com.sdv.guessnumber.fragments.endScreen.EndFragment.Companion.textArg
 import com.sdv.guessnumber.fragments.menu.MenuFragment
 import com.sdv.guessnumber.fragments.playScreen.contract.PlayEffect
 import com.sdv.guessnumber.fragments.playScreen.contract.PlayEvent
+import com.sdv.guessnumber.util.EMPTY
 import com.sdv.guessnumber.util.resolve
 import com.sdv.guessnumber.util.scale
 
@@ -93,7 +94,7 @@ class PlayFragment : Fragment() {
 
         binding.buttonForNumber.setOnClickListener {
             val text = binding.editNumber.text.toString()
-            binding.editNumber.setText("")
+            binding.editNumber.setText(EMPTY)
             viewModel.onEvent(PlayEvent.OnClickButtonEnterNumber(text))
         }
     }
@@ -111,6 +112,7 @@ class PlayFragment : Fragment() {
                     binding.apply {
                         textCount.text = getString(R.string.attempt_x, state.count)
                         timer.isVisible = state.isTimerVisible
+                        timer.text = state.timeText
                         if (minValue.text != state.min.toString()) {
                             minValue.text = state.min.toString()
                             minValue.scale()
@@ -169,8 +171,8 @@ class PlayFragment : Fragment() {
 
                 viewModel.onEvent(PlayEvent.CheckPointInterval(a, b))
 
-                edMin.setText("")
-                edMax.setText("")
+                edMin.setText(EMPTY)
+                edMax.setText(EMPTY)
             }
         }
     }

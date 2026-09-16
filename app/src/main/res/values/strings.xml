@@ -22,8 +22,8 @@
     <string name="its_too_much">"Это слишком много и уж точно мое число меньше %1$d"</string>
     <string name="its_too_few"> "Слишком мало и уж точно мое число больше %1$d"</string>
     <string name="i_guess_number">"Я загадал число от %1$d до %2$d"</string>
-    <string name="minmum_maximum">Минимум - это минимальное число\nМаксимум - это максимальное число</string>
+    <string name="minimum_maximum">Минимум - это минимальное число\nМаксимум - это максимальное число</string>
     <string name="diff_less_2">Слишком маленький интервал (разница меньше 2)</string>
-    <string name="field_isnt_empty">Поле должно быть заполнено</string>
+    <string name="field_is_empty">Поле должно быть заполнено</string>
     <string name="value_0_10000">Значения от 0 до 10000</string>
 </resources>
