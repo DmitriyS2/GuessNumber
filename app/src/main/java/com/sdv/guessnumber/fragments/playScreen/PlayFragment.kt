@@ -71,7 +71,7 @@ class PlayFragment : Fragment() {
                             }
 
                             R.id.rulesGuess -> {
-                                val menuDialog = MenuFragment(
+                                val menuDialog = MenuFragment.newInstance(
                                     getString(R.string.guess_number),
                                     getString(R.string.rules_guess)
                                 )
