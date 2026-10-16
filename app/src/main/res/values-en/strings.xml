@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Guess Number</string>
+    <string name="chooser_share_post">Share</string>
+    <string name="message_victory">"You can congratulate me! I guessed the number chosen by the computer in GuessNumber in %1$d tries!"</string>
+    <string name="number_guess_x_times">"Number guessed in %1$d tries!"</string>
+    <string name="сongratulations">Congratulations!!!</string>
+    <string name="new_game">New game</string>
+    <string name="start">Start</string>
+    <string name="enter_number">Enter a number</string>
+    <string name="enter">Enter</string>
+    <string name="minimum">Minimum</string>
+    <string name="maximum">Maximum</string>
+    <string name="ok">OK</string>
+    <string name="rules_guess">"    The computer picks a number within the specified range.\n\n    You can change the range bounds in the menu."</string>
+    <string name="wrong_number">Invalid number entered!\nTry again</string>
+    <string name="attempt_x">"Attempt %1$d"</string>
+    <string name="number_of_comp_more">"The hidden number is greater than %1$d"</string>
+    <string name="number_of_comp_bigger_min">"Um… I think I already said my number is greater than %1$d"</string>
+    <string name="number_of_comp_smaller">"The hidden number is less than %1$d"</string>
+    <string name="number_of_comp_smaller_max">"I believe I already said my number is less than %1$d"</string>
+    <string name="its_too_much">"That's too much, and my number is definitely less than %1$d"</string>
+    <string name="its_too_few">"Too few, and my number is definitely greater than %1$d"</string>
+    <string name="i_guess_number">"I've picked a number from %1$d to %2$d"</string>
+    <string name="minimum_maximum">Minimum is the lowest number\nMaximum is the highest number</string>
+    <string name="diff_less_2">Range too small (difference is less than 2)</string>
+    <string name="field_is_empty">The field must not be empty</string>
+    <string name="value_0_10000">Values from 0 to 10000</string>
+</resources>

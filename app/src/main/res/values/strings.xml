@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">GuessNumber</string>
+    <string name="app_name">Угадай число</string>
     <string name="chooser_share_post">Поделиться</string>
     <string name="message_victory">"Можешь меня поздравить! Число, загаданное компьютером в игре GuessNumber, отгадано мной c %1$d раза!"</string>
     <string name="number_guess_x_times">"Число угадано с %1$d раза!"</string>
-    <string name="Congrat">Поздравляю!!!</string>
+    <string name="сongratulations">Поздравляю!!!</string>
     <string name="new_game">Новая игра</string>
-    <string name="guess_number">Guess Number</string>
-    <string name="start">START</string>
+    <string name="start">Начать</string>
     <string name="enter_number">Введите число</string>
     <string name="enter">Ввод</string>
     <string name="minimum">Минимум</string>
