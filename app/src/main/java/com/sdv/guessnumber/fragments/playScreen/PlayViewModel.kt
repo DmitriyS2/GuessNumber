@@ -123,9 +123,10 @@ class PlayViewModel : ViewModel() {
         var textAnswer: UiText? = null
         var min: Int = state.value.min
         var max: Int = state.value.max
+        val newCount = state.value.count + 1
         if (numberInput == state.value.number) {
             viewModelScope.launch {
-                _effect.emit(PlayEffect.NavigateToEnd(state.value.count))
+                _effect.emit(PlayEffect.NavigateToEnd(newCount))
             }
             return
         }
@@ -154,7 +155,7 @@ class PlayViewModel : ViewModel() {
         }
         _state.update {
             it.copy(
-                count = it.count + 1,
+                count = newCount,
                 textAnswer = textAnswer,
                 min = min,
                 max = max,
